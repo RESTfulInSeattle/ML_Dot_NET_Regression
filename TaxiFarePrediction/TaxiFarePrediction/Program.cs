@@ -1,4 +1,5 @@
 ﻿using System;
+using TaxiFarePredictionML.Model;
 
 namespace TaxiFarePrediction
 {
@@ -6,7 +7,21 @@ namespace TaxiFarePrediction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ModelInput input = new ModelInput()
+            {
+                Vendor_id = "CMT",
+                Rate_code = 1,
+                Passenger_count = 1,
+                Trip_distance = 3.8f,
+                Payment_type = "CRD"
+            };
+
+            //Make prediction
+            ModelOutput prediction = ConsumeModel.Predict(input);
+
+            //Print Prediction
+            Console.WriteLine($"Predicted Fare: {prediction.Score}");
+            Console.ReadKey();
         }
     }
 }
